@@ -1,0 +1,23 @@
+{
+  "extends": ["@nuxtjs/eslint-config-typescript"],
+  "rules": {
+    "vue/no-multiple-template-root": "off",
+    "vue/no-v-for-template-key": "off",
+    "vue/no-v-model-argument": "off",
+    "import/order": ["warn", {
+      "pathGroups": [
+        { "pattern": "#app", "group": "external" },
+        { "pattern": "~~/**", "group": "external" }
+      ],
+      "alphabetize": {
+          "order": "asc", /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */
+          "caseInsensitive": true /* ignore case. Options: [true, false] */
+      }
+    }],
+    "import/named": "off",
+    "vue/no-deprecated-slot-attribute": "off",
+    "semi": "off",
+    "space-before-function-paren": "off",
+    "indent": "off"
+  }
+}
