@@ -6,7 +6,7 @@
   <div class="page">
     login
     <NuxtLink to="/daily">
-      To Daily
+      Go to Daily
     </NuxtLink>
   </div>
 </template>

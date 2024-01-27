@@ -6,13 +6,13 @@
   <div class="layout">
     <!-- <NuxtLoadingIndicator color="#c80046" /> -->
     <div class="layout__header">
-      header
+      <TheHeader />
     </div>
     <div class="layout__content">
       <slot />
     </div>
     <div class="layout__footer">
-      footer
+      <TheFooter />
     </div>
   </div>
 </template>

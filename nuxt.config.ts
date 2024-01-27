@@ -11,5 +11,17 @@ export default defineNuxtConfig({
         'acceptHMRUpdate'
       ]
     }
-  ], "@nuxt/image"]
+  ],
+    '@nuxt/image',
+    '@nuxt/ui'
+  ],
+
+  css: ['~/assets/css/main.css'],
+
+  postcss: {
+    plugins: {
+      'postcss-nested': {}
+    }
+  }
+
 });

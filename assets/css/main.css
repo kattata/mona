@@ -1,0 +1,13 @@
+@import './_fonts.css';
+@import './_variables.css';
+
+body {
+  font-family: "Raleway";
+  background-color: var(--color-gray-90);
+  color: var(--color-text);
+}
+
+h1 {
+  font-family: "Oranienbaum";
+  font-size: 40px;
+}

@@ -1,0 +1,13 @@
+@font-face {
+  font-weight: 400;
+  font-family: Raleway;
+  font-style: normal;
+  src: url("../fonts/Raleway.ttf");
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: Oranienbaum;
+  font-style: normal;
+  src: url("../fonts/Oranienbaum-Regular.ttf");
+}
