@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import type { Artwork } from '~~/types/artwork';
 const artwork = ref<Artwork | null>(null);
+const dailyArtworkIdCookie = useCookie('dailyArtworkId').value;
 
-const { data } = useAsyncData('artwork', () => $fetch('/api/artwork'));
+const { data } = useAsyncData('artwork', () => $fetch(`/api/artwork/${dailyArtworkIdCookie}`));
 
 watch(() => data.value, () => {
-  artwork.value = data.value?.data;
+  artwork.value = data.value?.data || null;
 }, { immediate: true });
 
 </script>

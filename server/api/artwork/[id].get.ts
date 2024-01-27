@@ -1,32 +1,14 @@
 import { APIResponse } from '~/types/server';
 import { isNullable, noData } from '~/utils/server';
 
-export default defineEventHandler(async (): Promise<APIResponse> => {
+export default defineEventHandler(async (event): Promise<APIResponse | null> => {
   let parsedRes: APIResponse | null = null;
 
-  async function fetchValidArtworks() {
+  const id = getRouterParam(event, 'id');
+
+  async function fetchArtworkById() {
     try {
-      const res = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?q=*&isHighlighted=true&hasImages=true');
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      noData();
-    }
-  }
-
-  async function fetchRandomArtwork() {
-    try {
-      const validArtworks = await fetchValidArtworks();
-
-      if (!validArtworks) {
-        return;
-      }
-
-      const total = validArtworks.total;
-      const randomIndex = Math.floor(Math.random() * (total - 0 + 1));
-      const randomArtworkId = validArtworks.objectIDs?.[randomIndex];
-
-      const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomArtworkId}`);
+      const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
       const data = await res.json();
 
       const artist = {
@@ -56,7 +38,11 @@ export default defineEventHandler(async (): Promise<APIResponse> => {
     }
   }
 
-  await fetchRandomArtwork();
+  await fetchArtworkById();
+
+  if (!parsedRes?.data?.primaryImage) {
+    await fetchArtworkById();
+  }
 
   return parsedRes;
 });
