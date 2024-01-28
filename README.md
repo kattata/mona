@@ -1,4 +1,4 @@
-# Mona - Your daily dose of art
+# Mona
 
 Mona teaches you something new about art every day. 
 - You will be shown a new, famous artwork every day
