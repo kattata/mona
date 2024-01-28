@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Icons from https://icon-sets.iconify.design/
+
 const props = defineProps<{
   name: string;
 }>();

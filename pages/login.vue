@@ -2,6 +2,7 @@
 import { Form } from 'vee-validate';
 
 const authStore = useAuthStore();
+const { showToast } = useLayoutStore();
 
 const user = reactive({
   email: '',
@@ -10,11 +11,15 @@ const user = reactive({
 
 async function handleSubmit() {
   try {
-    await authStore.login(user.email, user.password);
+    const { error } = await authStore.login(user.email, user.password);
+
+    if (error) {
+      throw error;
+    }
 
     navigateTo('/daily');
   } catch (error) {
-    // TODO: Show toast
+    showToast({ message: error.message });
   }
 }
 
