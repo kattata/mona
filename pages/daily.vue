@@ -92,6 +92,10 @@ function addToFavorites() {
     gap: 8px;
   }
 
+  &__dates {
+    color: var(--color-gray-50);
+  }
+
   &__favorite-btn {
     &:hover {
       background-color: var(--color-red-100);

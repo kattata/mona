@@ -2,19 +2,20 @@
 import { Form } from 'vee-validate';
 
 const authStore = useAuthStore();
-const { isLoggedIn } = storeToRefs(authStore);
 
 const user = reactive({
   email: '',
   password: ''
 });
 
-function handleSubmit() {
-  // eslint-disable-next-line no-console
-  console.log(user);
-  isLoggedIn.value = true;
+async function handleSubmit() {
+  try {
+    await authStore.login(user.email, user.password);
 
-  navigateTo('/daily');
+    navigateTo('/daily');
+  } catch (error) {
+    // TODO: Show toast
+  }
 }
 
 </script>

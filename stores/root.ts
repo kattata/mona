@@ -33,6 +33,15 @@ export const useRootStore = defineStore('root', () => {
     // eslint-disable-next-line no-console
     console.log('client initialized');
 
+    const authStore = useAuthStore();
+    const { isLoggedIn, user } = storeToRefs(authStore);
+
+    if (user.value) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+
     if (dailyArtworkIdCookie) {
       return;
     }

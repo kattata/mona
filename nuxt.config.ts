@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     }
   ],
     '@nuxt/image',
-    'nuxt-icon'
+    'nuxt-icon',
+    '@nuxtjs/supabase'
   ],
 
   css: ['~/assets/css/main.css'],

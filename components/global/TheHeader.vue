@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const authStore = useAuthStore();
+const { isLoggedIn } = storeToRefs(authStore);
 
 </script>
 
@@ -12,8 +14,8 @@
       </div>
       <nav>
         <ul>
-          <li class="nav-item">
-            <BaseLink to="/">
+          <li v-if="isLoggedIn" class="nav-item">
+            <BaseLink to="/profile">
               <BaseIcon name="material-symbols-light:account-box-outline" />
               <div>Profile</div>
             </BaseLink>
