@@ -1,5 +1,6 @@
 export const useArtworkStore = defineStore('artwork', () => {
-  const dailyArtworkId = ref<number>(0);
+  const dailyArtworkId = ref<string>('');
+  const temporaryId = ref<string>('');
 
   async function getDailyArtwork() {
     try {
@@ -10,34 +11,23 @@ export const useArtworkStore = defineStore('artwork', () => {
       const randomIndex = Math.floor(Math.random() * (total - 0 + 1));
       const randomArtworkId = artworks?.[randomIndex];
 
-      dailyArtworkId.value = randomArtworkId;
+      temporaryId.value = String(randomArtworkId);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
     }
   }
 
-  function setDailyArtworkCookie(dailyId: string, userId: string) {
-    const expires = new Date();
-    expires.setHours(24, 0, 0, 0);
-
-    const cookieContent = {
-      userId,
-      dailyId
-    };
-
-    useCookie('dailyArtworkId', { expires }).value = JSON.stringify(cookieContent);
-  }
-
   return {
     dailyArtworkId,
-    getDailyArtwork,
-    setDailyArtworkCookie
+    temporaryId,
+    getDailyArtwork
   };
 }, {
   persist: {
     storage: persistedState.cookiesWithOptions({
-      expires: new Date().setHours(24, 0, 0, 0)
+      expires: new Date(new Date().setHours(24, 0, 0, 0)),
+      sameSite: true
     }),
     key: 'dailyArtworkId'
   }

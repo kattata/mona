@@ -9,7 +9,7 @@ export const useRootStore = defineStore('root', () => {
     // eslint-disable-next-line no-console
     console.log('server initialized');
 
-    if (dailyArtworkIdCookie) {
+    if (dailyArtworkIdCookie?.dailyArtworkId) {
       return;
     }
 
@@ -19,6 +19,8 @@ export const useRootStore = defineStore('root', () => {
   function clientInit() {
     // eslint-disable-next-line no-console
     console.log('client initialized');
+
+    artworkStore.dailyArtworkId = artworkStore.temporaryId;
   }
 
   return {
