@@ -2,10 +2,11 @@
 @import './_variables.css';
 @import './_container.css';
 @import './_utils.css';
-/* @import './_mediaqueries.css'; */
+@import './_form.css';
+@import './_button.css';
 
 body {
-  font-family: "Raleway";
+  font-family: var(--font-family-base);
   background-color: var(--color-gray-90);
   color: var(--color-text);
 }
@@ -13,9 +14,16 @@ body {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 h1, .h1 {
-  font-family: "Oranienbaum";
+  font-family: var(--font-family-display);
   font-size: var(--h1-font-size);
+  margin-bottom: 12px;
+}
+
+p, .p {
+  font-size: var(--font-size-base);
+  margin-bottom: 8px;
 }

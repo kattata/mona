@@ -13,7 +13,7 @@
       <nav>
         <ul>
           <li class="nav-item">
-            <BaseLink to="/profile">
+            <BaseLink to="/">
               <BaseIcon name="material-symbols-light:account-box-outline" />
               <div>Profile</div>
             </BaseLink>

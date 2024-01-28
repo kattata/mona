@@ -1,0 +1,75 @@
+:root {
+  /* Default */
+  --button-primary-color: var(--color-white-100);
+  --button-primary-font-weight: 400;
+  --button-primary-font-size: var(--font-size-small);
+  --button-primary-line-height: var(--line-height-base);
+  --button-primary-background: var(--color-gray-80);
+  --button-primary-border: var(--color-gray-80);
+  --button-primary-border-radius: var(--border-radius-default);
+  --button-primary-box-shadow: none;
+
+  /* Hover */
+  --button-primary-color-hover: var(--color-white);
+  --button-primary-background-hover: var(--color-gray-90);
+  --button-primary-border-hover: none;
+  --button-primary-box-shadow-hover: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 32px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: hand;
+  cursor: pointer;
+  transition: border 0.3s ease-out, color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out, opacity 0.3s ease-out;
+  user-select: none;
+
+  &:hover { text-decoration: none; }
+
+  &:focus,
+  &.focus { outline: 0; }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.button--primary {
+  color: var(--button-primary-color);
+  font-weight: var(--button-primary-font-weight);
+  font-size: var(--button-primary-font-size);
+  line-height: var(--button-primary-line-height);
+  background-color: var(--button-primary-background);
+  border: var(--button-primary-border);
+  border-radius: var(--button-primary-border-radius);
+  box-shadow: var(--button-primary-box-shadow);
+
+  &:hover {
+    color: var(--button-primary-color-hover);
+    background: var(--button-primary-background-hover);
+    border: var(--button-primary-border-hover);
+    box-shadow: var(--button-primary-box-shadow-hover);
+
+  }
+
+  &:active {
+    color: var(--button-primary-color-active);
+    background: var(--button-primary-background-active);
+    border: var(--button-primary-border-active);
+    box-shadow: var(--button-primary-box-shadow-active);
+
+
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--button-primary-color-disabled);
+    background: var(--button-primary-background-disabled);
+    border: var(--button-primary-border-disabled);
+    box-shadow: var(--button-primary-box-shadow-disabled);
+
+  }
+}

@@ -1,0 +1,58 @@
+:root {
+  --form-input-color: var(--color-white-100);
+  --form-input-background-color: var(--color-gray-90);
+  --form-input-font-size-base: var(--font-size-base);
+  --form-input-font-family: var(--font-family-base);
+  --form-input-line-height-base: var(--line-height-base);
+  --form-input-border-radius: var(--border-radius-default);
+  --form-input-border: 1px solid var(--color-gray-70)
+}
+
+.form-element {
+  padding-top: 4px;
+  padding-bottom: 12px;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  color: var(--form-input-color);
+  font-size: var(--form-input-font-size-base);
+  font-family: var(--form-input-font-family);
+  line-height: var(--form-input-line-height-base);
+  background-clip: padding-box;
+  border: var(--form-input-border);
+  border-radius: var(--form-input-border-radius);
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  appearance: none; /* Fix appearance for date inputs in Safari */
+  background-color: var(--form-input-background-color);
+
+  &:focus {
+    border: var(--form-input-border);
+  }
+
+  &:focus-visible {
+    border: var(--form-input-border);
+    outline: var(--form-input-border);
+  }
+ 
+  &:active {
+    border: var(--form-input-border);
+  }
+}
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: var(--font-size-small);
+}
+
+.form-input-error {
+  font-size: var(--font-size-small);
+  color: var(--color-red-90);
+}

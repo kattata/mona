@@ -1,14 +1,45 @@
 <script lang="ts" setup>
+import { Form } from 'vee-validate';
+
+const user = reactive({
+  email: '',
+  password: ''
+});
+
+function handleSubmit() {
+  // eslint-disable-next-line no-console
+  console.log(user);
+}
 
 </script>
 
 <template>
-  <div class="page">
-    login
-    <NuxtLink to="/daily">
-      Go to Daily
-    </NuxtLink>
+  <div class="page login-page">
+    <h1>Log in</h1>
+    <p>Get access to your daily dose of art!</p>
+    <Form @submit="handleSubmit">
+      <div class="form-element">
+        <BaseInput v-model="user.email" name="email" label="Email" rules="required|email" />
+      </div>
+      <div class="form-element">
+        <BaseInput v-model="user.password" name="password" label="Password" rules="required" />
+      </div>
+      <BaseButton type="submit">
+        Submit
+      </BaseButton>
+    </Form>
   </div>
 </template>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.login-page {
+  form {
+    margin-top: 16px;
+    max-width: 400px;
+  }
+
+  button {
+    margin-top: 12px;
+  }
+}
+</style>

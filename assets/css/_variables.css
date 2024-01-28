@@ -21,7 +21,11 @@
   --color-skeleton-dark: var(--color-gray-70);
 
   /* Typography */
+  --font-family-base: "Raleway";
+  --font-family-display: "Oranienbaum";
+
   --line-height-base: 16px;
+
   --font-size-extra-small: 12px;
   --font-size-small: 14px;
   --font-size-base: 16px;

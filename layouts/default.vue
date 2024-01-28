@@ -9,7 +9,11 @@
       <TheHeader />
     </div>
     <div class="layout__content">
-      <slot />
+      <div class="container">
+        <main>
+          <slot />
+        </main>
+      </div>
     </div>
     <div class="layout__footer">
       <TheFooter />
@@ -17,4 +21,16 @@
   </div>
 </template>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.layout__content {
+  margin-block: 24px;
+}
+
+main {
+  margin: 20px auto;
+  background-color: var(--color-gray-100);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: var(--shadow-default);
+}
+</style>
