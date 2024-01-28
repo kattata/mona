@@ -1,22 +1,12 @@
+import { useArtworkStore } from './artwork';
+import { useAuthStore } from './auth';
+
 export const useRootStore = defineStore('root', () => {
-  const dailyArtworkId = ref<number>(0);
+  const authStore = useAuthStore();
+  const { getDailyArtwork, setDailyArtworkCookie, dailyArtworkId } = useArtworkStore();
+  const { user } = storeToRefs(authStore);
+
   const dailyArtworkIdCookie = useCookie('dailyArtworkId').value;
-
-  async function getDailyArtwork() {
-    try {
-      const { data } = await useFetch('/api/artworks');
-      const artworks = data.value?.data?.artworks;
-      const total = data.value?.data?.total;
-
-      const randomIndex = Math.floor(Math.random() * (total - 0 + 1));
-      const randomArtworkId = artworks?.[randomIndex];
-
-      dailyArtworkId.value = randomArtworkId;
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  }
 
   async function serverInit() {
     // eslint-disable-next-line no-console
@@ -33,23 +23,13 @@ export const useRootStore = defineStore('root', () => {
     // eslint-disable-next-line no-console
     console.log('client initialized');
 
-    const authStore = useAuthStore();
-    const { isLoggedIn, user } = storeToRefs(authStore);
-
-    if (user.value) {
-      isLoggedIn.value = true;
-    } else {
-      isLoggedIn.value = false;
-    }
-
     if (dailyArtworkIdCookie) {
       return;
     }
 
-    const expires = new Date();
-    expires.setHours(24, 0, 0, 0);
-
-    useCookie('dailyArtworkId', { expires }).value = String(dailyArtworkId.value);
+    if (user.value?.id) {
+      setDailyArtworkCookie(String(dailyArtworkId), user.value?.id);
+    }
   }
 
   return {

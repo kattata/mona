@@ -13,13 +13,13 @@ export const useLayoutStore = defineStore('layout', () => {
 
   function showToast(toastOptions: ToastOptions) {
     options.message = toastOptions.message;
-    options.duration = toastOptions.duration || 2000;
+    options.duration = toastOptions.duration || 5000;
 
     isToastDisplayed.value = true;
 
     setTimeout(() => {
       isToastDisplayed.value = false;
-    }, 2000);
+    }, options.duration);
   }
 
   return {

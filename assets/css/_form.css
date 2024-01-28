@@ -1,7 +1,7 @@
 :root {
   --form-input-color: var(--color-white-100);
   --form-input-background-color: var(--color-gray-90);
-  --form-input-font-size-base: var(--font-size-base);
+  --form-input-font-size-base: var(--font-size-small);
   --form-input-font-family: var(--font-family-base);
   --form-input-line-height-base: var(--line-height-base);
   --form-input-border-radius: var(--border-radius-default);

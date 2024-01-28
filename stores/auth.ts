@@ -8,6 +8,10 @@ export const useAuthStore = defineStore('auth', () => {
     return supabaseUser.value;
   });
 
+  watch(() => user.value, () => {
+    isLoggedIn.value = !!user.value;
+  }, { immediate: true });
+
   async function login(email: string, password: string) {
     // TODO: Save dailyArtworkId per user
 
@@ -16,7 +20,7 @@ export const useAuthStore = defineStore('auth', () => {
         email,
         password
       });
-      isLoggedIn.value = true;
+
       return res;
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -27,7 +31,6 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout() {
     try {
       const res = await supabaseClient.auth.signOut();
-      isLoggedIn.value = false;
       return res;
     } catch (error) {
       // eslint-disable-next-line no-console

@@ -3,7 +3,7 @@ import type { Artwork } from '~~/types/artwork';
 const artwork = ref<Artwork | null>(null);
 const dailyArtworkIdCookie = useCookie('dailyArtworkId').value;
 
-const { data, pending } = useAsyncData('artwork', () => $fetch(`/api/artwork/${dailyArtworkIdCookie}`));
+const { data, pending } = useAsyncData('artwork', () => $fetch(`/api/artwork/${dailyArtworkIdCookie?.dailyId}`));
 
 watch(() => data.value, () => {
   artwork.value = data.value?.data || null;
