@@ -1,6 +1,5 @@
 export const useArtworkStore = defineStore('artwork', () => {
   const dailyArtworkId = ref<number>(0);
-  // const dailyArtworkIdCookie = useCookie('dailyArtworkId').value;
 
   async function getDailyArtwork() {
     try {
@@ -18,13 +17,13 @@ export const useArtworkStore = defineStore('artwork', () => {
     }
   }
 
-  function setDailyArtworkCookie(value: string, userId: string) {
+  function setDailyArtworkCookie(dailyId: string, userId: string) {
     const expires = new Date();
     expires.setHours(24, 0, 0, 0);
 
     const cookieContent = {
       userId,
-      dailyId: value
+      dailyId
     };
 
     useCookie('dailyArtworkId', { expires }).value = JSON.stringify(cookieContent);
@@ -35,6 +34,13 @@ export const useArtworkStore = defineStore('artwork', () => {
     getDailyArtwork,
     setDailyArtworkCookie
   };
+}, {
+  persist: {
+    storage: persistedState.cookiesWithOptions({
+      expires: new Date().setHours(24, 0, 0, 0)
+    }),
+    key: 'dailyArtworkId'
+  }
 });
 
 if (import.meta.hot) {

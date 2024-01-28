@@ -14,7 +14,8 @@ export default defineNuxtConfig({
   ],
     '@nuxt/image',
     'nuxt-icon',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    '@pinia-plugin-persistedstate/nuxt'
   ],
 
   css: ['~/assets/css/main.css'],
