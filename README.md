@@ -11,6 +11,10 @@ Technical details
 
 The idea is inspired by a student project I was a part of at Business Academy Aarhus - [Mona Daily Art](https://github.com/kattata/mona-daily-art), a cross-platform application built with React and Ionic.
 
+## Test user
+Email: test@example.com
+Pasword: test123
+
 ## Setup
 
 Make sure to install the dependencies:
