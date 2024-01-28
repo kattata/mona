@@ -9,47 +9,105 @@ watch(() => data.value, () => {
   artwork.value = data.value?.data || null;
 }, { immediate: true });
 
+function addToFavorites() {
+  // eslint-disable-next-line no-console
+  console.log('add to favorites');
+}
+
 </script>
 
 <template>
   <div class="page">
-    <div class="daily">
-      <template v-if="pending">
-        Loading...
-      </template>
-      <template v-else>
+    <div class="container">
+      <div class="daily">
         <main>
-          <NuxtImg v-if="artwork?.primaryImage" :src="artwork?.primaryImage" loading="eager" class="daily__main-image" />
-          <div>
-            <h1>{{ artwork?.title }}</h1>
-            <div>{{ artwork?.artist?.name }}</div>
-            <div class="daily__dates">
-              {{ artwork?.object?.startDate }} - {{ artwork?.object?.endDate }}
+          <div class="daily__main-image-wrapper">
+            <BaseSkeleton v-if="pending" width="100%" height="100%" class="daily__main-image daily__main-image--placeholder" />
+            <NuxtImg
+              v-else-if="artwork?.primaryImage"
+              :src="artwork?.primaryImage"
+              loading="eager"
+              class="daily__main-image"
+            />
+          </div>
+          <div class="daily__details">
+            <div class="daily__details-header">
+              <div v-if="pending" class="daily__details-header-info">
+                <BaseSkeleton v-if="pending" mimic="h1" />
+                <BaseSkeleton v-if="pending" mimic="paragraph" />
+                <BaseSkeleton v-if="pending" mimic="paragraph" />
+              </div>
+              <div v-else class="daily__details-header-info">
+                <h1>{{ artwork?.title }}</h1>
+                <div>{{ artwork?.artist?.name }}</div>
+                <div class="daily__dates">
+                  {{ artwork?.object?.startDate }} - {{ artwork?.object?.endDate }}
+                </div>
+              </div>
+              <div class="daily__details-actions">
+                <BaseIconButton name="fluent:heart-20-regular" bg-color="var(--color-red-90)" class="daily__favorite-btn" @click="addToFavorites" />
+              </div>
             </div>
           </div>
         </main>
-      </template>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
 .daily {
-  max-width: 1000px;
   margin: 20px auto;
   background-color: var(--color-gray-100);
   border-radius: 8px;
   padding: 24px;
+  box-shadow: var(--shadow-default);
 
   main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    @media(min-width: 992px) {
+      grid-template-columns: 1fr 1fr;
+      height: calc(100vh - (140px + (20px * 2)));
+    }
+  }
+
+  &__main-image-wrapper {
+    width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+
+    .daily__main-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+
+      &--placeholder {
+        background-color: var(--color-gray-80);
+      }
+    }
+  }
+
+  &__details-header {
     display: flex;
     gap: 24px;
+    justify-content: space-between;
   }
-}
 
-img {
-  width: 500px;
-  height: 500px;
-  object-fit: cover;
+  &__details-header-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__favorite-btn {
+    &:hover {
+      background-color: var(--color-red-100);
+    }
+  }
 }
 </style>

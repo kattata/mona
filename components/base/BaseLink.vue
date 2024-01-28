@@ -10,7 +10,19 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="props.url" :target="props.target">
+  <NuxtLink :to="props.to" :target="props.target">
     <slot />
   </NuxtLink>
 </template>
+
+<style lang="postcss" scoped>
+a {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+</style>

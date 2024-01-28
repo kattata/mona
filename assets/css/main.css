@@ -1,5 +1,8 @@
 @import './_fonts.css';
 @import './_variables.css';
+@import './_container.css';
+@import './_utils.css';
+/* @import './_mediaqueries.css'; */
 
 body {
   font-family: "Raleway";
@@ -7,7 +10,12 @@ body {
   color: var(--color-text);
 }
 
-h1 {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1, .h1 {
   font-family: "Oranienbaum";
-  font-size: 40px;
+  font-size: var(--h1-font-size);
 }

@@ -1,9 +1,38 @@
 :root {
+  /* Colors */
   --color-gray-100: #1D1D1D;
   --color-gray-90: #313131;
   --color-gray-80: #565656;
+  --color-gray-70: #646464;
 
   --color-white-100: #ffffff;
 
+  --color-red-100: #af2d35;
+  --color-red-90: #CF3540;
+
   --color-text: var(--color-white-100);
+
+  /* Shadows */
+  --shadow-soft: 0 0 24px rgba(0, 0, 0, 0.1);
+  --shadow-default: 10px 10px 60px rgba(0, 0, 0, 0.4);
+
+  /* Skeleton */
+  --color-skeleton-light: var(--color-gray-80);
+  --color-skeleton-dark: var(--color-gray-70);
+
+  /* Typography */
+  --line-height-base: 16px;
+  --font-size-extra-small: 12px;
+  --font-size-small: 14px;
+  --font-size-base: 16px;
+  --font-size-large: 18px;
+
+  --h1-font-size: 40px;
+  --h2-font-size: 36px;
+  --h3-font-size: 32px;
+  --h4-font-size: 28px;
+  --h5-font-size: 24px;
+
+  /* Border */
+  --border-radius-default: 8px;
 }

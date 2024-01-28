@@ -13,14 +13,15 @@ export default defineNuxtConfig({
     }
   ],
     '@nuxt/image',
-    '@nuxt/ui'
+    'nuxt-icon'
   ],
 
   css: ['~/assets/css/main.css'],
 
   postcss: {
     plugins: {
-      'postcss-nested': {}
+      'postcss-nested': {},
+      'postcss-preset-env': {}
     }
   }
 

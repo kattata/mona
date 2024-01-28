@@ -5,5 +5,12 @@ const props = defineProps<{
 </script>
 
 <template>
-  <UIcon :name="props.name" />
+  <Icon :name="props.name" color="white" class="icon" />
 </template>
+
+<style lang="postcss" scoped>
+.icon {
+  width: 24px;
+  height: 24px;
+}
+</style>
