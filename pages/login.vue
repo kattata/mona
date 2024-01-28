@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate';
 
+const authStore = useAuthStore();
+const { isLoggedIn } = storeToRefs(authStore);
+
 const user = reactive({
   email: '',
   password: ''
@@ -9,6 +12,9 @@ const user = reactive({
 function handleSubmit() {
   // eslint-disable-next-line no-console
   console.log(user);
+  isLoggedIn.value = true;
+
+  navigateTo('/daily');
 }
 
 </script>
@@ -22,7 +28,7 @@ function handleSubmit() {
         <BaseInput v-model="user.email" name="email" label="Email" rules="required|email" />
       </div>
       <div class="form-element">
-        <BaseInput v-model="user.password" name="password" label="Password" rules="required" />
+        <BaseInput v-model="user.password" name="password" label="Password" rules="required" type="password" />
       </div>
       <BaseButton type="submit">
         Submit
