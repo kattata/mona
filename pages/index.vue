@@ -7,5 +7,5 @@ onMounted(() => {
   }
 
   navigateTo('/login');
-})
+});
 </script>
