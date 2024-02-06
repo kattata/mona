@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { Artwork } from '~~/types/artwork';
 
+const { addToFavorites } = useArtworkStore();
+
 const dailyArtworkIdCookie = useCookie('dailyArtworkId').value;
 
 const artwork = ref<Artwork | null>(null);
@@ -11,9 +13,8 @@ watch(() => data.value, () => {
   artwork.value = data.value?.data || null;
 }, { immediate: true });
 
-function addToFavorites() {
-  // eslint-disable-next-line no-console
-  console.log('add to favorites');
+async function handleAddToFavorites() {
+  await addToFavorites(dailyArtworkIdCookie?.dailyArtworkId);
 }
 
 </script>
@@ -45,7 +46,7 @@ function addToFavorites() {
             </div>
           </div>
           <div class="daily__details-actions">
-            <BaseIconButton name="fluent:heart-20-regular" bg-color="var(--color-red-90)" class="daily__favorite-btn" @click="addToFavorites" />
+            <BaseIconButton name="fluent:heart-20-regular" bg-color="var(--color-red-90)" class="daily__favorite-btn" @click="handleAddToFavorites" />
           </div>
         </div>
       </div>

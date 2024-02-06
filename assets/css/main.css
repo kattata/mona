@@ -12,6 +12,7 @@ body {
 }
 
 * {
+  line-height: 1.5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,7 +24,27 @@ h1, .h1 {
   margin-bottom: 12px;
 }
 
+h2, .h2 {
+  font-family: var(--font-family-base);
+  font-size: var(--h2-font-size);
+  margin-bottom: 10px;
+}
+
+h3, .h3 {
+  font-family: var(--font-family-base);
+  font-size: var(--h3-font-size);
+  margin-bottom: 8px;
+}
+
 p, .p {
   font-size: var(--font-size-base);
   margin-bottom: 8px;
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+}
+
+.text-extra-small {
+  font-size: var(--font-size-extra-small);
 }

@@ -1,6 +1,13 @@
+import type { Database } from '~/types/supabase'
+
 export const useArtworkStore = defineStore('artwork', () => {
   const dailyArtworkId = ref<string>('');
   const temporaryId = ref<string>('');
+
+  const supabase = useSupabaseClient<Database>();
+
+  const authStore = useAuthStore()
+  const { user } = storeToRefs(authStore);
 
   async function getDailyArtwork() {
     try {
@@ -18,10 +25,52 @@ export const useArtworkStore = defineStore('artwork', () => {
     }
   }
 
+  async function addToFavorites(artworkId: string) {
+    try {
+      const { error } = await supabase
+      .from('favorites')
+      .upsert({ userId: user.value?.id, artworkId })
+      .select()
+
+      if (error) {
+        throw new Error(error as any)
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  }
+
+  async function getFavorites() : Promise<Database['public']['Tables']['favorites']['Row'][] | null> {
+    if (!user.value?.id) {
+      return null;
+    }
+
+    try {
+      const { data, error } = await supabase
+      .from('favorites')
+      .select()
+      .eq('userId', user.value?.id)
+
+      if (error) {
+        throw new Error(error as any)
+      }
+
+      return data;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+
+    return null;
+  }
+
   return {
     dailyArtworkId,
     temporaryId,
-    getDailyArtwork
+    getDailyArtwork,
+    addToFavorites,
+    getFavorites
   };
 }, {
   persist: {
